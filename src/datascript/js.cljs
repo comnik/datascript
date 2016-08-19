@@ -6,9 +6,11 @@
       [filter count empty conj find nth assoc dissoc disj pop peek get
        empty? reverse into merge subvec keys vals
        equiv sort sort-by
-       vector vec array-map hash-map set compare])
+       vector vec array-map hash-map set compare
+       shuffle])
   (:require
     [datascript.core :as d]
+    [datascript.transit :as dt]
     [clojure.walk :as walk]
     [cljs.reader]))
 
@@ -22,7 +24,7 @@
 (defn- schema->clj [schema]
   (->> (js->clj schema)
        (reduce-kv
-         (fn [m k v] (assoc m k (walk/postwalk keywordize v))) {})))
+         (fn [m k v] (cljs.core/assoc m k (walk/postwalk keywordize v))) {})))
 
 (declare entities->clj)
 
@@ -127,7 +129,7 @@
                      :db_after  db
                      :tx_data   (into-array
                                   (concat
-                                    (map #(assoc % :added false) (d/datoms @conn :eavt))
+                                    (map #(cljs.core/assoc % :added false) (d/datoms @conn :eavt))
                                     (d/datoms db :eavt)))
                      :tx_meta   tx-meta }]
     (reset! conn db)
@@ -159,6 +161,11 @@
 (defn ^:export squuid_time_millis [uuid]
   (d/squuid-time-millis (cljs.core/uuid uuid)))
 
+(defn ^:export read_transit_str [s]
+  (dt/read-transit-str s))
+
+(defn ^:export write_transit_str [db]
+  (dt/write-transit-str db))
 
 ;; Mori
 
@@ -198,3 +205,4 @@
 (mori-export set cljs.core/set)
 (mori-export Set cljs.core/PersistentHashSet)
 (mori-export compare cljs.core/compare)
+(mori-export shuffle cljs.core/shuffle)
