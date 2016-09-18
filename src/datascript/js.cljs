@@ -167,6 +167,40 @@
 (defn ^:export write_transit_str [db]
   (dt/write-transit-str db))
 
+;; Keywords
+
+(def ^:export DB_ID :db/id)
+(def ^:export DB_FN_CALL :db.fn/call)
+(def ^:export DB_BEFORE :db-before)
+(def ^:export DB_AFTER :db-after)
+(def ^:export TX_DATA :tx-data)
+(def ^:export TEMPIDS :tempids)
+(def ^:export TX_META :tx-meta)
+(def ^:export EAVT :eavt)
+(def ^:export AEVT :aevt)
+(def ^:export AVET :avet)
+(def ^:export DB_PART_TX :db.part/tx)
+(def ^:export DB_CURRENT_TX :db/current-tx)
+(def ^:export DB_CARDINALITY :db/cardinality)
+(def ^:export DB_CARDINALITY_MANY :db.cardinality/many)
+(def ^:export DB_UNIQUE :db/unique)
+(def ^:export DB_IDENT :db/ident)
+(def ^:export DB_UNIQUE_IDENTITY :db.unique/identity)
+(def ^:export DB_ADD :db/add)
+(def ^:export DB_RETRACT :db/retract)
+(def ^:export DB_RETRACT_ENTITY :db.fn/retractEntity)
+(def ^:export DB_RETRACT_ATTRIBUTE :db.fn/retractAttribute)
+(def ^:export DB_VALUE_TYPE :db/valueType)
+(def ^:export DB_TYPE_REF :db.type/ref)
+(def ^:export DB_IS_COMPONENT :db/isComponent )
+(def ^:export FIND :find)
+(def ^:export IN :in)
+(def ^:export WHERE :where)
+(def ^:export ADDED :added)
+(def ^:export E :e)
+(def ^:export A :a)
+(def ^:export V :v)
+
 ;; Mori
 
 (mori-export count cljs.core/count)
