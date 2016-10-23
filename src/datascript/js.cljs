@@ -155,6 +155,9 @@
 (defn ^:export index_range [db attr start end]
   (into-array (d/index-range db attr start end)))
 
+(defn ^:export tempid [part]
+  (d/tempid part))
+
 (defn ^:export squuid []
   (str (d/squuid)))
 
